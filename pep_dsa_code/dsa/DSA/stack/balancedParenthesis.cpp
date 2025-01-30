@@ -45,7 +45,7 @@ bool balancedParenthesis(string str){
 }
 
 int main(){
-    string str="((([{}])[))";
+    string str="((([{}])))";
     if(balancedParenthesis(str)){
         cout<<"Balanced";
     }
