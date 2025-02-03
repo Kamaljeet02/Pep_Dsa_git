@@ -41,8 +41,30 @@ vector<int> twoSum(vector<int>& nums, int target) {
         }
         return {-1,-1};
 }
+
+//MAJORITY element in array..(>n/2)
+int majorityElement(vector<int>& nums) {
+        // Moore's voting algo..
+        int cnt =0;
+        int ele;
+        for(int i=0; i<nums.size();i++){
+            if(cnt==0){
+                cnt=1;
+                ele=nums[i];
+            }
+            else if(nums[i]==ele){
+                cnt++;
+            }
+            else{
+                cnt--;
+            }
+        }
+        return ele;
+        }
+
+
 int main() {
-    // Write C++ code here
+    
     int  n;
     cin>> n;
     int arr[n];
