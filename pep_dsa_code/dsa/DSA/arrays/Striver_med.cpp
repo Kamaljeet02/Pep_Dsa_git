@@ -25,6 +25,22 @@ int longestSubarray(vector<int>& arr, int k) {
         }
         return maxLen;
 }
+
+//Two Sum.
+vector<int> twoSum(vector<int>& nums, int target) {
+        map<int ,int> mpp;
+        int req=0;
+        for(int i=0; i<nums.size();i++){
+            int num= nums[i];
+            req= target -num;
+
+            if(mpp.find(req)!=mpp.end()){
+                return{mpp[req], i};
+            }
+            mpp[nums[i]]=i;
+        }
+        return {-1,-1};
+}
 int main() {
     // Write C++ code here
     int  n;
