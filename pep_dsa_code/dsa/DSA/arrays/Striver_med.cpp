@@ -60,7 +60,24 @@ int majorityElement(vector<int>& nums) {
             }
         }
         return ele;
+}
+
+// Max score from sum array minimums.
+int pairWithMaxSum(vector<int> &arr) {
+        //  check the max sum of 2 conseq elements.
+        int n =arr.size();
+        int sum=0;
+        int maxi =INT_MIN;
+        for(int i =0;i<n-1;i++){
+            sum =arr[i]+arr[i+1];
+            if(sum>maxi) {
+                maxi =sum;
+            }
+            
         }
+        return maxi;
+}
+
 
 
 int main() {
