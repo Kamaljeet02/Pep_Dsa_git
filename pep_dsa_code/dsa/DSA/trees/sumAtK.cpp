@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 
 class Node{
@@ -14,34 +15,38 @@ class Node{
     }
 };
 
-void printLevelOrder(Node* root){
-    if(root==NULL) return;
+int sumAtK(Node* root, int k){
+    if(root==NULL) return -1;
 
-    //first create a queue and push root and NULL .
-    // We are pushing nodes in queue and after poping print data of node .
     queue<Node*> q;
     q.push(root);
     q.push(NULL);
 
-    //iterate untill queue is empty .
+    int level =0;
+    int sum= 0;
+
     while(!q.empty()){
         Node* node =q.front();
         q.pop();
 
-        if(node != NULL){
-            cout<<node->data<<" ";
-
+        if(node!=NULL){
+            if(level==k) {
+                sum= sum+node->data;
+            }
             if(node->left){
                 q.push(node->left);
             }
             if(node->right){
                 q.push(node->right);
             }
+
         }
         else if(!q.empty()){
             q.push(NULL);
+            level++;
         }
     }
+
 }
 
 int main(){
@@ -53,6 +58,6 @@ int main(){
 
     root->right->left= new Node(6);
     root->right->right =new Node(7);
-    printLevelOrder(root);
+    sumAtK(root, 3);
 
 }
