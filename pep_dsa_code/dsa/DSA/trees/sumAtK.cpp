@@ -46,6 +46,68 @@ int sumAtK(Node* root, int k){
             level++;
         }
     }
+    return sum;
+
+}
+
+int countNodes(Node* root){
+    if(root==NULL) return 0;
+
+    // int leftCount= countNodes(root->left);
+    // int rightCount= countNodes(root->right);
+    // return leftCount+rightCount+1;
+
+    return countNodes(root->left) +countNodes(root->right) +1;
+}
+
+int sumOfNodes(Node* root){
+    if(root==NULL) return 0;
+
+    // int leftsum =sumOfNodes(root->left);
+    // int rightsum= sumOfNodes(root->right);
+
+    // return leftsum + rightsum + root->data;
+
+    return sumOfNodes(root->left) + sumOfNodes(root->right) +root->data;
+}
+
+int heightOfTree(Node* root){
+    if(root==NULL) return 0;
+
+    int leftHeight = heightOfTree(root->left);
+    int rightHeight = heightOfTree(root->right);
+
+    return max(leftHeight, rightHeight) +1;
+}
+
+void rightView(Node* root){
+    if(root==NULL) return;
+
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()){
+        //we will not add NULL in queue , we will calculate the size of the queue and check how many
+    //nodes are stored and traverse over it.
+
+    int n=q.size();
+    for(int i=0; i<n; i++){
+        //creating a curr pointer that will start from the front of the queue.
+        Node* curr =q.front();
+        q.pop();
+
+        //when we will reach at last node
+        if(i==n-1){
+            cout<<curr->data<<" ";
+        }
+
+        //then we will go on left and right of current node
+        if(curr->left) q.push(curr->left);
+        if(curr->right) q.push(curr->right);
+    }
+
+    }
+    
 
 }
 
@@ -58,6 +120,7 @@ int main(){
 
     root->right->left= new Node(6);
     root->right->right =new Node(7);
-    sumAtK(root, 3);
+    int ans =sumAtK(root, 3);
+    cout<<ans<<endl;
 
 }
