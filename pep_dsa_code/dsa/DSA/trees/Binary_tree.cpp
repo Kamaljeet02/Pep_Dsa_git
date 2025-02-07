@@ -111,6 +111,15 @@ void rightView(Node* root){
 
 }
 
+Node* searchBst(Node* root, int key){
+    if(root==NULL) return NULL;
+
+    if(root->data ==key) return root;
+    if(root->data < key) return searchBst(root->right, key);
+    if(root->data > key) return searchBst(root->left, key);
+    
+}
+
 int main(){
     Node* root = new Node(1);
     root->left =new Node(2);
