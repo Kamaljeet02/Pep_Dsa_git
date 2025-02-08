@@ -44,6 +44,28 @@ void printLevelOrder(Node* root){
     }
 }
 
+//better
+void levelOrder(Node * root) {
+        if(root==NULL) return;
+        queue<Node*> q;
+        q.push(root);
+        while(!q.empty()){
+            int n = q.size();
+            for(int i=0; i<n; i++){
+                Node* curr= q.front();
+                q.pop();
+                cout<<curr->data<<" ";
+                if(curr->left){
+                    q.push(curr->left);
+                }
+                if(curr->right){
+                    q.push(curr->right);
+                }
+            }
+        }
+
+    }
+
 int main(){
     Node* root = new Node(1);
     root->left =new Node(2);
