@@ -19,6 +19,25 @@ int binaryS(int arr[], int n, int key){
     return -1;
 }
 
+int findFloor(vector<int>& arr, int k) {
+        // Your code here
+        int n =arr.size();
+        int low =0;
+        int high = n-1;
+        int ans =-1;
+        while(low<=high){
+            int mid= (low+high)/2;
+            if(arr[mid] <=k){
+                ans =mid;
+                low =mid+1;
+            }
+            else{
+                high =mid-1;
+            }
+            
+        }
+        return ans;
+}
 int main() {
    
     int  n;
