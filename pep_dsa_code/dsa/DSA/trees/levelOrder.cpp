@@ -14,13 +14,14 @@ class Node{
     }
 };
 
+
 void printLevelOrder(Node* root){
     if(root==NULL) return;
 
     //first create a queue and push root and NULL .
     // We are pushing nodes in queue and after poping print data of node .
     queue<Node*> q;
-    q.push(root);
+  q.push(root);
     q.push(NULL);
 
     //iterate untill queue is empty .
