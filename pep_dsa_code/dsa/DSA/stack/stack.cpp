@@ -37,6 +37,34 @@ class MyStack{
     }
 };
 
+//using linke dlist
+class Node{
+    public:
+    int data;
+    Node* next;
+    Node(int val){
+        data =val;
+        next =NULL;
+    }
+};
+class Stack{
+    public:;
+    Node* top;
+    int size=0;
+    void push(int x){
+        Node* temp =new Node(x);
+        temp->next =top;
+        top =temp;
+        size ++; 
+    }
+
+    void pop(){
+        Node* temp =top;
+        top = top->next;
+        delete temp;
+        size--;
+    }
+};
 int main(){
     stack<int> st;
 
