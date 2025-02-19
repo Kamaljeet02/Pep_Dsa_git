@@ -82,14 +82,18 @@ class Queue{
         }
         else{
             end->next =temp;
+            end =temp;
         }
         size += 1;
     }
 
     void pop(int x){
         if(front ==NULL) return;
+        
         Node *temp =front;
         front = front ->next;
+        if(front==NULL) end =NULL;
+
         delete temp;
         size--;
 
@@ -99,8 +103,72 @@ class Queue{
         if(front==NULL) return;
         return front ->data;
     }
-    
+
 };
+
+// Queue using STACK ---->
+// 1 ..1st approach
+         // push --: s1 ->s2,  x->s1,   s2->s1 ;
+class Q{
+    public:
+    stack<int> s1,s2;
+
+    void push(int x){  //O(2N)
+        while(s1.size()){
+            s2.push(s1.top());
+            s1.pop();
+        }
+        s1.push(x);
+        while(s2.size()){
+            s1.push(s2.top());
+            s2.pop();
+        }
+    }
+
+    void pop(){
+        if(s1.size()==0) return;
+        s1.pop();
+    }
+    void top(){
+        if(s1.size()==0) return;
+        s1.top();
+    }
+};
+//  2nd Approach Optimal
+class Q{
+    public:
+    stack<int>s1, s2;
+
+    void push(int x){  //O(1)
+        s1.push(x);
+
+    }
+
+    void pop(){
+        if(!s2.empty()) s2.pop();
+                //O(N) ..occasionaly
+        else{
+            while(s1.size()){
+                s2.push(s1.top());
+                s1.pop();
+            }
+            s2.pop();
+        }
+    }
+
+    int top(){
+        if(!s2.empty()) s2.top();
+                    // O(N) ...occasionaly
+        else{
+            while(s1.size()){
+                s2.push(s1.top());
+                s1.pop();
+            }
+            return s2.top();
+        }
+    }
+};
+
 void reverseQueue(queue<int> q){
     stack<int> s;
     while(!q.empty()){

@@ -37,7 +37,7 @@ class MyStack{
     }
 };
 
-//using linke dlist
+//using linked list-------
 class Node{
     public:
     int data;
