@@ -88,6 +88,51 @@ class Stack{
         return q.front();
     }
 };
+
+// MIN STACK
+class MinStack {
+    public:
+        MinStack() {
+            
+        }
+        stack<long long>st;
+        long long mini=INT_MAX;
+        void push(long long val) {
+            if(st.empty()){
+                mini=val;
+                st.push(val);
+            } 
+            
+            else{
+                if(val>mini) st.push(val);
+                else{
+                    st.push(2*val-mini);
+                    mini= val;
+                }
+            }
+        }
+        
+        void pop() {
+            if(st.empty()) return;
+            long long x= st.top();
+            st.pop();
+            if(x<mini){
+                mini =2*mini -x;
+            }
+        }
+        
+        long long top() {
+            if(st.empty()) return -1;
+            long long x= st.top();
+            if(x<mini) return mini;
+            return x;
+        }
+        
+        long long getMin() {
+            return mini;
+        }
+    };
+    
 int main(){
     stack<int> st;
 
