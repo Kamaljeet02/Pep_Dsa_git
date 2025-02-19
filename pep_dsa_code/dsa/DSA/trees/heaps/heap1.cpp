@@ -86,6 +86,18 @@ void heapify(int arr[], int n, int i){
     }
 }
 
+// Heap Sort
+void heapSort(int arr[], int n){
+    int size =n;
+
+    while(size>1){
+        swap(arr[size], arr[1]);
+        size--;
+
+        heapify(arr, size ,1);
+    }
+}
+
 int main(){
 
     heap h;
@@ -97,7 +109,7 @@ int main(){
 
     h.print();
 
-    int arr[6]= {-1,24,23,25,22,20};
+    int arr[6]= {-1, 24,23,25,22,20};
     int n= 5;
     for(int i=n/2; i>0;i--){
         heapify(arr,n,i);
@@ -106,7 +118,7 @@ int main(){
     for(int i=0;i<n;i++){
         cout<<arr[i]<<" ";
     }
-    
+
     
 
 }
