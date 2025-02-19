@@ -1,7 +1,7 @@
 #include<iostream>
 
 using namespace std;
-
+//using array---
 class MyStack{
     public:
     int *arr;
@@ -63,6 +63,29 @@ class Stack{
         top = top->next;
         delete temp;
         size--;
+    }
+};
+
+//Stack using  QUEUE -----
+class Stack{
+    public:
+    queue<int> q;
+    int s=q.size();
+
+    void push(int x){
+        q.push(x);
+        for(int i =1; i<=s; i++){
+            q.push(q.front());
+            q.pop();
+        }
+    }
+
+    void pop(){
+        q.pop();
+    }
+
+    int top(){
+        return q.front();
     }
 };
 int main(){
