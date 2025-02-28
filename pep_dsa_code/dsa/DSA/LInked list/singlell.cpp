@@ -106,8 +106,8 @@ Node* kReversal(Node* &head, int k){
         count++;
     }
     
-    if(curr!=NULL){
-        head->next=kReversal(curr, k);
+    if(nxt!=NULL){
+        head->next=kReversal(nxt, k);
     }
     return curr;
     
