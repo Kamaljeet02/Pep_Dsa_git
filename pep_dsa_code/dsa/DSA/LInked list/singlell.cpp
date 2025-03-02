@@ -109,7 +109,7 @@ Node* kReversal(Node* &head, int k){
     if(nxt!=NULL){
         head->next=kReversal(nxt, k);
     }
-    return curr;
+    return prev;
     
 
 }
