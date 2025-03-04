@@ -15,6 +15,20 @@ class Node {
           this->prev = NULL;
       }
   };
+  class DLLNode {
+    public:
+      int data;
+      DLLNode *next;
+      DLLNode *prev;
+  
+      DLLNode(int val) {
+          data = val;
+          this->next = NULL;
+          this->prev = NULL;
+      }
+  };
+
+ // Deletion DLL 
 Node* deleteNode(Node* head, int x) {
     // Your code here
     Node* temp =head;
@@ -36,6 +50,23 @@ Node* deleteNode(Node* head, int x) {
     return head;
 }
 
+// Reversing DLL
+DLLNode* reverseDLL(DLLNode* head) {
+    // Your code here
+    if(head==NULL || head->next==NULL) return head;
+    DLLNode* temp =head;
+    DLLNode* node= NULL;
+    while(temp!=NULL){
+        node =temp->prev;
+        temp->prev= temp->next;
+        temp->next=node;
+        temp= temp->prev;
+    }
+    head=node->prev;
+    return head;
+    
+    
+}
 int main(){
 
 }
