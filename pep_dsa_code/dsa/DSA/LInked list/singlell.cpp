@@ -12,6 +12,13 @@ class Node{
         next = NULL;
     }
 };
+struct ListNode {
+         int val;
+         ListNode *next;
+         ListNode() : val(0), next(nullptr) {}
+         ListNode(int x) : val(x), next(nullptr) {}
+         ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
 void insertAtTail(Node* &head , int val){
     Node* n =new Node(val);
@@ -74,6 +81,7 @@ void deleteHead(Node* &head){
     delete temp;
 }
 
+
 Node* reverseLL(Node* &head ){
     
     Node* prev =NULL;
@@ -89,6 +97,7 @@ Node* reverseLL(Node* &head ){
     head =prev;
     return head;
 }
+
 
 //check again (wrong)
 Node* kReversal(Node* &head, int k){
@@ -112,6 +121,41 @@ Node* kReversal(Node* &head, int k){
     return prev;
     
 
+}
+
+// check palindrome
+ListNode* reverseLL(ListNode* head){
+    if(head==NULL || head->next==NULL) return head;
+    ListNode* newH = reverseLL(head->next);
+    ListNode* front =head->next;
+    front->next =head;
+    head->next =NULL;
+    return newH;
+}
+
+bool isPalindrome(ListNode* head) {
+    if(head==NULL || head->next==NULL) return true;
+    ListNode* slow =head;
+    ListNode* fast=head;
+    while(fast->next!=NULL && fast->next->next !=NULL){
+        slow=slow->next;
+        fast =fast->next->next;
+    }
+    ListNode* newHead =reverseLL(slow->next);
+    ListNode* first =head;
+    ListNode* second =newHead;
+    while(second!=NULL){
+        if(first->val != second->val){
+            reverseLL(newHead);
+            return false;
+        }
+        
+        first= first->next;
+        second =second->next;
+        
+    }
+    reverseLL(newHead);
+    return true;
 }
 
 int main() {
