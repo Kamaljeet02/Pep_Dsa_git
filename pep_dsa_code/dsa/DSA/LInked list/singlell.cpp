@@ -157,6 +157,33 @@ bool isPalindrome(ListNode* head) {
     reverseLL(newHead);
     return true;
 }
+// Remove nth from end
+ListNode* removeNthFromEnd(ListNode* head, int n) {
+    ListNode* fast=head;
+    ListNode* slow= head;
+    for(int i=0; i<n ;i++){
+        fast = fast->next;
+    }
+    if(fast==NULL) return head->next;
+    while(fast->next !=NULL){
+        slow= slow->next;
+        fast= fast->next;
+    }
+    ListNode* delNode= slow->next;
+    slow->next = delNode->next;
+    delete(delNode);
+    return head;
+}
+
+//ReverseLL using recursion
+ListNode* reverseList(ListNode* head) {
+    if(head==NULL || head->next==NULL) return head;
+    ListNode* newHead =reverseList(head->next);
+    ListNode* first =head->next;
+    first->next =head;
+    head->next =NULL;
+    return newHead;
+}
 
 int main() {
     Node *head =NULL;
