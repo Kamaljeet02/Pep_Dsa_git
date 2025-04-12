@@ -279,7 +279,67 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         if(t2==NULL) t2=headA;
     }
     return t1;
-}    
+}  
+
+// Add one n.o to LL
+
+class Solution {
+    public:
+      int helper(Node* temp){
+          if(temp==NULL) return 1;
+          int carry =helper(temp->next);
+          temp->data += carry;
+          if(temp->data <10){
+              return 0;
+          }
+          return 1;
+          
+      }
+      Node* addOne(Node* head) {
+          // Your Code here
+          // return head of list after adding one
+          int carry =helper(head);
+          if(carry==1){
+              Node* newNode = new Node(1);
+              newNode->next = head;
+              return newNode;
+          }
+          return head;
+      }
+  };
+ 
+ //  add 2 linked lists
+ class Solution {
+    public:
+        ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+            ListNode* temp1= l1;
+            ListNode* temp2 =l2;
+            ListNode* dummy =new ListNode(-1);
+            ListNode* curr =dummy;
+            int carry=0;
+            int sum;
+            while(temp1!=NULL || temp2!= NULL){
+                sum = carry;
+                if(temp1) sum += temp1->val;
+                if(temp2) sum += temp2->val;
+                carry = sum/10;
+                ListNode* newNode =new ListNode(sum%10);
+                curr->next =newNode;
+                curr= curr->next;
+    
+                if(temp1) temp1= temp1->next;
+                if(temp2) temp2=temp2->next;
+                
+            }
+            if(carry){
+                ListNode* node =new ListNode(carry);
+                curr->next = node;
+                
+            }
+            return dummy->next;
+    
+        }
+    }; 
 int main() {
     Node *head =NULL;
     insertAtHead(head ,1);
