@@ -103,6 +103,34 @@ bool searchele(vector<int>& nums, int target) {
     }
     return false;
 }
+
+//find minimum in rotated sorted array   Unique
+int findMin(vector<int>& nums) {
+    int low =0;
+    int high =nums.size()-1;
+    int mini= INT_MAX;
+    while(low<=high){
+        int mid= (low+high)/2;
+        if(nums[low]<= nums[high]){
+            mini =min(mini, nums[low]);
+            break;
+        }
+
+        // LEFT SORTED
+        if(nums[low]<=nums[mid]){
+            mini =min(mini, nums[low]);
+            //store minimum from sorted aprt and eliminate
+            low= mid+1;
+        }
+        //Right sorted
+        else{
+            mini =min(mini, nums[mid]);
+            high =mid-1;
+        }
+
+    }
+    return mini;
+}
 int main() {
     
     
