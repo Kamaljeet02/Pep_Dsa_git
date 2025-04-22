@@ -49,3 +49,42 @@ vector<vector<int>> levelOrder(TreeNode* root) {
     }
     return ans;
 } 
+
+// Zig zag Level order Traversal
+vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+    vector<vector<int>> ans;
+    if(root==NULL) return ans;
+    queue<TreeNode*> q;
+    q.push(root);
+    int level=1;
+    while(!q.empty()){
+        vector<int> levelNode(q.size());
+        
+        
+        int n = q.size();
+        
+        if(level%2 !=0){
+            for(int i=0;i<n; i++){
+                TreeNode* node = q.front();
+                q.pop();
+                levelNode[i] = node->val;
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
+                
+            }
+        }    
+        else{
+            for(int i=n - 1;i >= 0 ; i--){
+                TreeNode* node = q.front();
+                q.pop();
+                levelNode[i] = node->val;
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
+                
+            }
+        }
+        level++;    
+        ans.push_back(levelNode);    
+    }
+    return ans;
+}
